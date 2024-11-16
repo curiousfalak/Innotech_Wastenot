@@ -24,7 +24,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.transport.R
+
+import com.example.wastenot.R
 
 @Composable
 fun OnboardingScreen(onFinished:()->Unit) {
@@ -45,12 +46,12 @@ fun OnboardingScreen(onFinished:()->Unit) {
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Image(
-                    painter= painterResource(id= R.drawable.logo),
-
-                    contentDescription = "App logo",
-                    modifier = Modifier.size(80.dp)
-                )
+//                Image(
+//                    painter= painterResource(id= R.drawable.logo),
+//
+//                    contentDescription = "App logo",
+//                    modifier = Modifier.size(80.dp)
+//                )
                 Text(
                     text = "WASTE NOT",
                     fontSize = 20.sp,

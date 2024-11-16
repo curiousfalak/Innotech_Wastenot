@@ -38,7 +38,7 @@ fun OnboardingScreen(onFinished:()->Unit) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(16.dp)
+                .padding(8.dp)
         ) {
             Row(
                 modifier = Modifier
@@ -53,7 +53,7 @@ fun OnboardingScreen(onFinished:()->Unit) {
 //                    modifier = Modifier.size(80.dp)
 //                )
                 Text(
-                    text = "WASTE NOT",
+                    text = "        ",
                     fontSize = 20.sp,
                     fontWeight = FontWeight.Bold
                 )
@@ -62,7 +62,7 @@ fun OnboardingScreen(onFinished:()->Unit) {
                 }
             }
 
-            Spacer(modifier = Modifier.height(50.dp))
+            Spacer(modifier = Modifier.height(4.dp))
 
             Image(
                 painter = painterResource(id = R.drawable.fruitbag),

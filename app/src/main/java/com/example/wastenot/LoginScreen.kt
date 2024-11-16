@@ -43,27 +43,29 @@ import com.example.wastenot.R
 
 
 @Composable
-fun LoginScreen(onLoginSuccess: ()->Unit) {
+fun LoginScreen(onLoginSuccess: () -> Unit) {
     var name by remember { mutableStateOf("") }
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
+    var profession by remember { mutableStateOf("") }
     var passwordVisible by remember { mutableStateOf(false) }
-    var Profession by remember { mutableStateOf("") }
+
     Box( // Wrap everything in a Box for background color
         modifier = Modifier
             .fillMaxSize()
             .background(Color.White) // Set the desired background color here
     ) {
-
         Column(
-            modifier = Modifier.fillMaxSize() .padding(top=100.dp),
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(top = 100.dp),
             verticalArrangement = Arrangement.Top,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Image(
                 painter = painterResource(id = R.drawable.img_3),
                 contentDescription = "icon",
-                Modifier.padding(start = 10.dp)
+                modifier = Modifier.padding(start = 10.dp)
             )
             Spacer(modifier = Modifier.height(8.dp))
 
@@ -77,8 +79,7 @@ fun LoginScreen(onLoginSuccess: ()->Unit) {
                 leadingIcon = {
                     Icon(imageVector = Icons.Filled.AccountCircle, contentDescription = "Name icon")
                 },
-
-                )
+            )
 
             Spacer(modifier = Modifier.height(4.dp))
 
@@ -90,8 +91,7 @@ fun LoginScreen(onLoginSuccess: ()->Unit) {
                     Icon(imageVector = Icons.Filled.Email, contentDescription = "Email icon")
                 },
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
-
-                )
+            )
 
             Spacer(modifier = Modifier.height(4.dp))
 
@@ -99,22 +99,26 @@ fun LoginScreen(onLoginSuccess: ()->Unit) {
                 value = password,
                 onValueChange = { password = it },
                 label = { Text(text = "Password") },
-
-                )
+            )
 
             Spacer(modifier = Modifier.height(4.dp))
 
             OutlinedTextField(
-                value = Profession,
-                onValueChange = { Profession = it },
+                value = profession,
+                onValueChange = { profession = it },
                 label = { Text(text = "Profession") },
-
-                )
+            )
 
             Spacer(modifier = Modifier.height(16.dp))
 
             Button(
-                onClick = { Log.i("Credentials", "Email=$email , Password=$password")},
+                onClick = {
+                    // Log credentials (for debugging purposes)
+                    Log.i("Credentials", "Name=$name, Email=$email, Password=$password, Profession=$profession")
+
+                    // Call the onLoginSuccess callback to navigate to the home screen
+                    onLoginSuccess()
+                },
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(horizontal = 16.dp),
@@ -122,16 +126,21 @@ fun LoginScreen(onLoginSuccess: ()->Unit) {
                     containerColor = Color(0xFF199712),
                     contentColor = Color.White
                 ),
-
             ) {
                 Text(text = "Login")
             }
 
             Spacer(modifier = Modifier.height(16.dp))
 
-            Text(text = "Or Sign In with", fontSize = 12.sp, fontWeight = FontWeight.Bold, modifier = Modifier.clickable { } )
+            Text(
+                text = "Or Sign In with",
+                fontSize = 12.sp,
+                fontWeight = FontWeight.Bold,
+                modifier = Modifier.clickable { }
+            )
+
             OutlinedButton(
-                onClick = onLoginSuccess,
+                onClick = { onLoginSuccess() }, // Simulate login success for Google Sign-In
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(horizontal = 16.dp),
@@ -140,7 +149,6 @@ fun LoginScreen(onLoginSuccess: ()->Unit) {
                     containerColor = Color.White, // Google button is usually white
                     contentColor = Color.Black
                 ),
-                // Optional: Adds shadow for a raised effect
             ) {
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
@@ -156,18 +164,10 @@ fun LoginScreen(onLoginSuccess: ()->Unit) {
                     // Text
                     Text(
                         text = "Continue with Google",
-
                         color = Color.Black
                     )
                 }
             }
         }
-
-            }
-        }
-
-
-
-
-
-
+    }
+}

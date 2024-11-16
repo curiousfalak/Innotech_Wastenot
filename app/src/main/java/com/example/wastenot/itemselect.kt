@@ -1,4 +1,4 @@
-package com.example.transport
+package com.example.wastenot
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column

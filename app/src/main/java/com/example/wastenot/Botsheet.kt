@@ -1,22 +1,20 @@
 package com.example.wastenot
 
-import android.content.Context
-import android.widget.Toast
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.*
+import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.ShoppingCart
 import androidx.compose.material3.*
-import androidx.compose.runtime.*
-import androidx.compose.ui.Alignment
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.text.input.PasswordVisualTransformation
-import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.google.firebase.auth.FirebaseAuth
+import com.example.OnboardingScreen
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -25,34 +23,45 @@ fun Botsheet() {
 
     Scaffold(
         topBar = {
-            TopAppBar(
-                title = { Text("WasteNot") },
-                colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = Color(0xFF199712),
-                    titleContentColor = Color.White
+            val navBackStackEntry = navController.currentBackStackEntryAsState()
+            val currentRoute = navBackStackEntry.value?.destination?.route
+
+            if (currentRoute == "home" || currentRoute == "retailer") {
+                TopAppBar(
+                    title = { Text("WasteNot") },
+                    colors = TopAppBarDefaults.topAppBarColors(
+                        containerColor = Color(0xFF199712),
+                        titleContentColor = Color.White
+                    )
                 )
-            )
+            }
         },
         bottomBar = {
-            BottomAppBar(containerColor = Color(0xFF199712)) {
-                val bottomBarItems = listOf(
-                    Triple(Icons.Default.Home, "Home", "home")
-                )
+            val navBackStackEntry = navController.currentBackStackEntryAsState()
+            val currentRoute = navBackStackEntry.value?.destination?.route
 
-                bottomBarItems.forEach { (icon, description, route) ->
-                    IconButton(
-                        onClick = {
-                            navController.navigate(route) {
-                                popUpTo("home") { inclusive = true }
-                            }
-                        },
-                        modifier = Modifier.weight(1f)
-                    ) {
-                        Icon(
-                            imageVector = icon,
-                            contentDescription = description,
-                            tint = Color.Gray
-                        )
+            if (currentRoute == "home" || currentRoute == "retailer") {
+                BottomAppBar(containerColor = Color(0xFF199712)) {
+                    val bottomBarItems = listOf(
+                        Triple(Icons.Default.Home, "Home", "home"),
+                        Triple(Icons.Default.ShoppingCart, "Retailer", "retailer")
+                    )
+
+                    bottomBarItems.forEach { (icon, description, route) ->
+                        IconButton(
+                            onClick = {
+                                navController.navigate(route) {
+                                    popUpTo("home") { inclusive = false }
+                                }
+                            },
+                            modifier = Modifier.weight(1f)
+                        ) {
+                            Icon(
+                                imageVector = icon,
+                                contentDescription = description,
+                                tint = if (currentRoute == route) Color.White else Color.Gray
+                            )
+                        }
                     }
                 }
             }
@@ -76,33 +85,9 @@ fun Botsheet() {
             composable("home") {
                 Home()
             }
-        }
-    }
-}
-
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-fun OnboardingScreen(onNavigateToLogin: () -> Unit) {
-    Scaffold(
-        topBar = {
-            TopAppBar(title = { Text("Onboarding") })
-        }
-    ) { innerPadding ->
-        Box(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(innerPadding),
-            contentAlignment = Alignment.Center
-        ) {
-            Button(onClick = onNavigateToLogin) {
-                Text("Get Started")
+            composable("retailer") {
+                Inventory()
             }
         }
     }
 }
-
-
-
-
-
-

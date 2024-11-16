@@ -19,7 +19,7 @@ import androidx.navigation.compose.rememberNavController
 import com.google.firebase.auth.FirebaseAuth
 
 @OptIn(ExperimentalMaterial3Api::class)
-@Composablegit
+@Composable
 fun Botsheet() {
     val navController = rememberNavController()
 

@@ -143,6 +143,7 @@ fun Inventory(onCardClick: (String) -> Unit) {
                             Icons.Filled.Clear,
                             contentDescription = "Clear Search",
                             tint = Color.Gray,
+
                             modifier = Modifier.clickable { searchQuery.value = "" }
                         )
                     }

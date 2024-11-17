@@ -1,4 +1,6 @@
-package com.example.testing
+package com.example.wastenot.Screens
+
+
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
@@ -26,16 +28,62 @@ import com.example.wastenot.R
 @Composable
 fun InventoryScreen() {
     val items = listOf(
-        InventoryItem("Banana", "Stored in 14°C, 90% RH, Plant Hormones: 10 ppm", R.drawable.banana, 40, 5),
-        InventoryItem("Apple", "Stored in 4°C, 90% RH, Plant Hormones: 30 ppm", R.drawable.apple, 120, 30),
-        InventoryItem("Orange", "Stored in 8°C, 90% RH, Plant Hormones: 20 ppm", R.drawable.orange, 60, 20),
-        InventoryItem("Grapes", "Stored in 2°C, 90% RH, Plant Hormones: 10 ppm", R.drawable.graphes, 150, 15),
-        InventoryItem("Mango", "Stored in 12°C, 90% RH, Plant Hormones: 15 ppm", R.drawable.mango, 100, 10),
-        InventoryItem("Strawberry", "Stored in 0°C, 95% RH, Plant Hormones: 5 ppm", R.drawable.stawberry, 200, 3),
-        InventoryItem("Pineapple", "Stored in 7°C, 90% RH, Plant Hormones: 20 ppm", R.drawable.pineapple, 80, 12),
-        InventoryItem("Watermelon", "Stored in 10°C, 85% RH, Plant Hormones: 10 ppm", R.drawable.watermelon, 50, 7),
-        InventoryItem("Kiwi", "Stored in 0°C, 95% RH, Plant Hormones: 5 ppm", R.drawable.kiwi, 300, 25),
-        InventoryItem("Peach", "Stored in 1°C, 90% RH, Plant Hormones: 10 ppm", R.drawable.peach, 180, 14)
+        InventoryItem(
+            name = "Milk",
+            description = "Stored in 4°C, 85% RH",
+            imageRes = R.drawable.milk,
+            price = 50, // Price in currency units
+            expiryDays = 7
+        ), // Highly perishable
+        InventoryItem(
+            name = "Cream",
+            description = "Stored in 5°C, 80% RH",
+            imageRes = R.drawable.cream,
+            price = 120, // Price in currency units
+            expiryDays = 14
+        ), // Perishable
+        InventoryItem(
+            name = "Soft Cheese",
+            description = "Stored in 4°C, 85% RH",
+            imageRes = R.drawable.softcheese,
+            price = 200, // Price in currency units
+            expiryDays = 21
+        ), // Moderately perishable
+        InventoryItem(
+            name = "Yogurt",
+            description = "Stored in 2°C, 90% RH",
+            imageRes = R.drawable.yoghurt,
+            price = 40, // Price in currency units
+            expiryDays = 10
+        ), // Highly perishable
+        InventoryItem(
+            name = "Butter",
+            description = "Stored in 3°C, 75% RH",
+            imageRes = R.drawable.butter,
+            price = 80, // Price in currency units
+            expiryDays = 90
+        ), // Less perishable
+        InventoryItem(
+            name = "Flavored Milk",
+            description = "Stored in 2°C, 85% RH",
+            imageRes = R.drawable.flavourmilk,
+            price = 60, // Price in currency units
+            expiryDays = 5
+        ), // Highly perishable
+        InventoryItem(
+            name = "Solid Cheese",
+            description = "Stored in 2°C, 80% RH",
+            imageRes = R.drawable.solidcheese,
+            price = 250, // Price in currency units
+            expiryDays = 180
+        ), // Less perishable
+        InventoryItem(
+            name = "Pudding",
+            description = "Stored in 4°C, 85% RH",
+            imageRes = R.drawable.pudding,
+            price = 100, // Price in currency units
+            expiryDays = 7
+        ) // Perishable
     )
 
     val quantities = remember { mutableStateMapOf<String, Int>() }

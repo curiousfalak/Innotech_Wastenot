@@ -118,7 +118,9 @@ fun Botsheet() {
 
             // Add the itemselect composable
             composable("itemselect") {
-                InventoryScreen() // Replace with your actual ItemSelect screen implementation
+                Inventory(
+                    onCardClick = TODO()
+                ) // Replace with your actual ItemSelect screen implementation
             }
         }
     }

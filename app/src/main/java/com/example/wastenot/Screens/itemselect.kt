@@ -24,7 +24,7 @@ import androidx.compose.ui.unit.sp
 import com.example.wastenot.R
 
 @Composable
-fun InventoryScreen() {
+fun Inventory() {
     val items = listOf(
         InventoryItem("Banana", "Stored in 14°C, 90% RH, Plant Hormones: 10 ppm", R.drawable.banana, 40, 5),
         InventoryItem("Apple", "Stored in 4°C, 90% RH, Plant Hormones: 30 ppm", R.drawable.apple, 120, 30),

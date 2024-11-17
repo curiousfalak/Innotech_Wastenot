@@ -26,7 +26,7 @@ import androidx.compose.ui.unit.sp
 import com.example.wastenot.R
 
 @Composable
-fun Invent() {
+fun dairy() {
     val items = listOf(
         InventoryItem(
             name = "Milk",

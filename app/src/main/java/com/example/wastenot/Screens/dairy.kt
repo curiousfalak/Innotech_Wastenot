@@ -1,10 +1,9 @@
-package com.example.wastenot.Screens
-
-
+package com.example
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -23,10 +22,11 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+
 import com.example.wastenot.R
 
 @Composable
-fun InventoryScreen() {
+fun Invent() {
     val items = listOf(
         InventoryItem(
             name = "Milk",
@@ -114,8 +114,7 @@ fun InventoryScreen() {
         LazyColumn(
             modifier = Modifier.weight(1f)
         ) {
-            items(items.size) { index ->
-                val item = items[index]
+            itemsIndexed(items) { index, item ->
                 InventoryItemRow(
                     item = item,
                     quantity = quantities[item.name] ?: 0,
@@ -162,7 +161,7 @@ fun InventoryItemRow(
             painter = painterResource(id = item.imageRes),
             contentDescription = item.name,
             modifier = Modifier
-                .size(64.dp) // Increased size
+                .size(48.dp) // Adjusted to a reasonable size
                 .clip(CircleShape)
         )
 

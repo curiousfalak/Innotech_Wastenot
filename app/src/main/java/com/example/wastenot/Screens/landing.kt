@@ -52,14 +52,8 @@ fun OnboardingScreen(onFinished:()->Unit) {
 //                    contentDescription = "App logo",
 //                    modifier = Modifier.size(80.dp)
 //                )
-                Text(
-                    text = "        ",
-                    fontSize = 20.sp,
-                    fontWeight = FontWeight.Bold
-                )
-                TextButton(onClick = onFinished) {
-                    Text(text = "Skip", color = Color.Gray, fontSize = 16.sp)
-                }
+
+
             }
 
             Spacer(modifier = Modifier.height(4.dp))
@@ -90,7 +84,7 @@ fun OnboardingScreen(onFinished:()->Unit) {
             Spacer(modifier = Modifier.height(32.dp))
 
             Button(
-                onClick = { /* Handle button click */ },
+                 onClick = onFinished ,
                 colors = ButtonDefaults.buttonColors(
                     containerColor = Color(0xFF199712)
                 ),

@@ -43,7 +43,7 @@ fun Profile(navController: NavController) {
         // Logout Button
         Button(
             onClick = { navController.navigate("login") }, // Navigate to login screen
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier.fillMaxWidth() .padding(top=100.dp),
             colors = ButtonDefaults.buttonColors(containerColor = Color.Red.copy(alpha = 0.6f))
         ) {
             Text("Logout", color = Color.White)
@@ -77,9 +77,29 @@ fun ProfileDetails() {
         modifier = Modifier.fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally // Align details to center
     ) {
-        Text("User Name", style = MaterialTheme.typography.titleMedium)
-        Text("Retailer / NGO Name", style = MaterialTheme.typography.bodyMedium, color = Color.Gray)
-        Text("Email: user@example.com", style = MaterialTheme.typography.bodyMedium, color = Color.Gray)
+        Card(modifier = Modifier.fillMaxWidth() .height(150.dp),
+                colors = CardDefaults.cardColors(
+                containerColor = Color.LightGray // Light Blue
+                ),
+            ) {
+            Column {
+
+                Text("User Name", style = MaterialTheme.typography.titleMedium, color = Color.White)
+                Spacer(modifier = Modifier.height(5.dp))
+                Text(
+                    "Retailer / NGO Name",
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = Color.White
+                )
+                Spacer(modifier = Modifier.height(5.dp))
+                Text(
+                    "Email: user@example.com",
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = Color.White
+                )
+            }
+        }
+
     }
 }
 
@@ -97,23 +117,10 @@ fun PreferencesColumn(
         PreferenceItem("Push notifications", areNotificationsEnabled) { newValue ->
             onNotificationToggle(newValue)
         }
-        Divider(color = Color.LightGray)
+
 
         // Add additional preferences or options here
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(vertical = 8.dp),
-            horizontalArrangement = Arrangement.SpaceBetween,
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            Text("PIN Code", style = MaterialTheme.typography.bodyLarge)
-            Icon(
-                imageVector = Icons.Default.AccountCircle,
-                contentDescription = "Pin Icon",
-                tint = MaterialTheme.colorScheme.onSurface
-            )
-        }
+
     }
 }
 

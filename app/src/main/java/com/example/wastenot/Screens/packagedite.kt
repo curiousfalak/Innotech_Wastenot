@@ -48,7 +48,7 @@ data class packagedit(
 @Composable
 fun packaged(){
     val items = listOf(
-        packagedit("Potato Chips", "Stored at 30°C,60% RH",  R.drawable.potatochips,"₹70","Expiry in 7 days"),
+        packagedit("Potato Chips", "Stored at 30°C,60% RH",  R.drawable.img_8,"₹70","Expiry in 7 days"),
         packagedit("Instant Noodles","Stored at 35°C,60%RH",R.drawable.img_9,"₹50","Expiry in 4 days"),
         packagedit("Popcorn", "Stored at 30°C, 50% RH", R.drawable.img_10,"₹30","Expiry in 30 days"),
         packagedit("Muffinn", "Stored at 25°C, 60% RH", R.drawable.img_11,"₹40","Expiry in 20 days"),

@@ -19,7 +19,8 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.OnboardingScreen
-
+import com.example.dairy
+import com.example.testing.fruit
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -110,20 +111,32 @@ fun Botsheet() {
                 Home()
             }
             composable("retailer") {
-                Inventory {
-                    navController.navigate("itemselect")
+                Inventory { category ->
+                    when (category) {
+                        "Fruits" -> navController.navigate("itemselect")
+                        "Dairy Products" -> navController.navigate("dairy")
+                        "Bakery Items" -> navController.navigate("bakeryinvent")
+                        "Packaged Items" -> navController.navigate("packagedite")
+                        else -> navController.navigate("itemselect") // Default
+                    }
                 }
             }
             composable("profile") { Profile(navController) }
 
-            // Add the itemselect composable
+            // Dynamic destination screens
             composable("itemselect") {
-                Inventory(
-                    onCardClick = TODO()
-                ) // Replace with your actual ItemSelect screen implementation
+                fruit()
+            }
+            composable("dairy") {
+                dairy() // Dairy composable in dairy.kt
+            }
+            composable("bakeryinvent") {
+                bakery() // Bakery composable in bakeryinvent.kt
+            }
+            composable("packagedite") {
+                packaged() // Packaged composable in packagedit.kt
             }
         }
     }
 }
-
 

@@ -21,6 +21,7 @@ import androidx.navigation.compose.rememberNavController
 import com.example.OnboardingScreen
 
 
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun Botsheet() {
@@ -32,19 +33,19 @@ fun Botsheet() {
             val currentRoute = navBackStackEntry.value?.destination?.route
             var selectedIcon by remember { mutableStateOf(Icons.Default.Home) }
 
-            if (currentRoute == "home" || currentRoute == "retailer" || currentRoute =="profile") {
+            if (currentRoute == "home" || currentRoute == "retailer" || currentRoute == "profile") {
                 TopAppBar(
                     title = { Text("WasteNot") },
                     colors = TopAppBarDefaults.topAppBarColors(
                         containerColor = Color(0xFF199712),
                         titleContentColor = Color.White
-                    )
-                    ,actions = {
+                    ),
+                    actions = {
                         IconButton(
                             onClick = {
                                 selectedIcon = Icons.Default.Person
                                 navController.navigate("profile") {
-                                    popUpTo("home") { inclusive = true }
+                                    popUpTo("home") { inclusive = false }
                                 }
                             }
                         ) {
@@ -56,19 +57,18 @@ fun Botsheet() {
                         }
                     }
                 )
-
             }
         },
         bottomBar = {
             val navBackStackEntry = navController.currentBackStackEntryAsState()
             val currentRoute = navBackStackEntry.value?.destination?.route
 
-            if (currentRoute == "home" || currentRoute == "retailer" || currentRoute =="profile") {
+            if (currentRoute == "home" || currentRoute == "retailer" || currentRoute == "profile") {
                 BottomAppBar(containerColor = Color(0xFF199712)) {
                     val bottomBarItems = listOf(
                         Triple(Icons.Default.Home, "Home", "home"),
                         Triple(Icons.Default.ShoppingCart, "Retailer", "retailer"),
-                        Triple(Icons.Default.Person,"Profile","profile")
+                        Triple(Icons.Default.Person, "Profile", "profile")
                     )
 
                     bottomBarItems.forEach { (icon, description, route) ->
@@ -86,7 +86,6 @@ fun Botsheet() {
                                 tint = if (currentRoute == route) Color.White else Color.Gray
                             )
                         }
-
                     }
                 }
             }
@@ -117,8 +116,12 @@ fun Botsheet() {
             }
             composable("profile") { Profile(navController) }
 
-
+            // Add the itemselect composable
+            composable("itemselect") {
+                InventoryScreen() // Replace with your actual ItemSelect screen implementation
             }
         }
     }
+}
+
 

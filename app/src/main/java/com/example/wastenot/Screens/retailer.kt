@@ -51,7 +51,7 @@ data class ImageItem(val imageId: Int, val description: String)
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun Inventory() {
+fun Inventory(onCardClick: () -> Unit) {
     val imageList = listOf(
         ImageItem(R.drawable.fruits1, "Fruits"),
         ImageItem(R.drawable.dairy, "Dairy Products"),
@@ -181,7 +181,8 @@ fun Inventory() {
                             .padding(8.dp)
                             .fillMaxWidth()
                             .clickable {
-                                // Handle item click
+                                onCardClick()
+
                             }
                             .border(1.dp, Color(0x80199712), RoundedCornerShape(8.dp)),
                         colors = CardDefaults.cardColors(
@@ -209,3 +210,4 @@ fun Inventory() {
         }
     }
 }
+

@@ -14,6 +14,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.OnboardingScreen
 
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun Botsheet() {
@@ -84,8 +85,13 @@ fun Botsheet() {
                 Home()
             }
             composable("retailer") {
-                Inventory()
+                Inventory {
+                    navController.navigate("itemselect")
+                }
+            }
+
+
             }
         }
     }
-}
+

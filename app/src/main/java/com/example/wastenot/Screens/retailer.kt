@@ -55,7 +55,7 @@ fun Inventory(onCardClick: (String) -> Unit) {
     val imageList = listOf(
         ImageItem(R.drawable.fruits1, "Fruits"),
         ImageItem(R.drawable.dairy, "Dairy Products"),
-        ImageItem(R.drawable.bakery, "Bakery Items"),
+        ImageItem(R.drawable.bakeryi, "Bakery Items"),
         ImageItem(R.drawable.meatandpoultry, "Meat & Poultry"),
         ImageItem(R.drawable.packaged, "Packaged Items"),
         ImageItem(R.drawable.seafood, "Seafood"),

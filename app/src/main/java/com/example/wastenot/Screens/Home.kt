@@ -1,4 +1,4 @@
-package com.example.wastenot
+package com.example.wastenot.Screens
 
 
 
@@ -19,6 +19,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import com.example.wastenot.R
 import kotlinx.coroutines.delay
 
 @Composable

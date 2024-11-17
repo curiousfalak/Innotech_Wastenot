@@ -1,4 +1,4 @@
-package com.example.wastenot
+package com.example.wastenot.Screens
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column

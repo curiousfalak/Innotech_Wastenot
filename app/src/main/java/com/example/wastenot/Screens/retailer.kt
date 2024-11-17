@@ -1,4 +1,4 @@
-package com.example.wastenot
+package com.example.wastenot.Screens
 
 import androidx.compose.animation.core.LinearEasing
 import androidx.compose.animation.core.animateFloatAsState
@@ -45,6 +45,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.wastenot.R
 
 data class ImageItem(val imageId: Int, val description: String)
 

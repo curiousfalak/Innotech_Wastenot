@@ -1,4 +1,4 @@
-package com.example.wasn
+package com.example.wastenot.dataclass
 
  data  class imageItem (
 

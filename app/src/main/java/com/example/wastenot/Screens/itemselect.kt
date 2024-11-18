@@ -1,4 +1,4 @@
-package com.example.testing
+package com.example.wastenot
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
@@ -21,10 +21,10 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.wastenot.R
+
 
 @Composable
-fun fruit() {
+fun fruit(onSaveChanges: () -> Unit) {
     val items = listOf(
         InventoryItem("Banana", "Stored in 14°C, 90% RH, Plant Hormones: 10 ppm", R.drawable.banana, 40, 5),
         InventoryItem("Apple", "Stored in 4°C, 90% RH, Plant Hormones: 30 ppm", R.drawable.apple, 120, 30),
@@ -85,7 +85,7 @@ fun fruit() {
 
         // Save Changes Button
         Button(
-            onClick = { /* Save Action */ },
+            onClick = onSaveChanges ,
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(top = 16.dp),

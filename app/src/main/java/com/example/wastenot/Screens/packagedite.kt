@@ -46,7 +46,7 @@ data class packagedit(
 
 
 @Composable
-fun packaged(){
+fun packaged(onSaveChanges: () -> Unit){
     val items = listOf(
         packagedit("Potato Chips", "Stored at 30°C,60% RH",  R.drawable.img_8,"₹70","Expiry in 7 days"),
         packagedit("Instant Noodles","Stored at 35°C,60%RH",R.drawable.img_9,"₹50","Expiry in 4 days"),
@@ -106,7 +106,7 @@ fun packaged(){
 
         // Save Changes Button
         Button(
-            onClick = { /* Save Action */ },
+            onClick = onSaveChanges,
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(top = 16.dp),

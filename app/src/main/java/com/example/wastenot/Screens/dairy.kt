@@ -26,7 +26,7 @@ import androidx.compose.ui.unit.sp
 import com.example.wastenot.R
 
 @Composable
-fun dairy() {
+fun dairy(onSaveChanges: () -> Unit) {
     val items = listOf(
         InventoryItem(
             name = "Milk",
@@ -132,7 +132,7 @@ fun dairy() {
 
         // Save Changes Button
         Button(
-            onClick = { /* Save Action */ },
+            onClick = onSaveChanges,
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(top = 16.dp),

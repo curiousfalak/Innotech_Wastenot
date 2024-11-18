@@ -218,7 +218,7 @@ fun FoodGraph() {
             )
             // Draw the "Food Transported to NGO" segment (Green color)
             drawArc(
-                color = Color.Green,
+                color = Color(0xFF199712),
                 startAngle = -90f + avoidedPercentage,
                 sweepAngle = transportedPercentage,
                 useCenter = true

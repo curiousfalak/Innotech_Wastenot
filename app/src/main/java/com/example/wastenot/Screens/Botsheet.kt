@@ -64,7 +64,7 @@ fun Botsheet() {
             val navBackStackEntry = navController.currentBackStackEntryAsState()
             val currentRoute = navBackStackEntry.value?.destination?.route
 
-            if (currentRoute == "home" || currentRoute == "retailer" || currentRoute == "profile") {
+            if (currentRoute == "home" || currentRoute == "retailer" ) {
                 BottomAppBar(containerColor = Color(0xFF199712)) {
                     val bottomBarItems = listOf(
                         Triple(Icons.Default.Home, "Home", "home"),

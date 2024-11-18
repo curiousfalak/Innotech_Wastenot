@@ -32,7 +32,7 @@ fun TransportSummaryCard() {
         modifier = Modifier
             .fillMaxWidth()
             .padding(horizontal = 16.dp) // Adjust the padding as needed
-            .background(Color.Gray) // Optional: To mimic the background outside the card
+            .background(Color.White) // Optional: To mimic the background outside the card
     )
 
 
@@ -112,7 +112,7 @@ fun TransportSummaryCard() {
                     ),
                     modifier = Modifier.fillMaxWidth()
                 ) {
-                    Text("Schedule Pickup")
+                    Text("Connect to NGO", fontWeight = FontWeight.Bold)
                 }
             }
         }

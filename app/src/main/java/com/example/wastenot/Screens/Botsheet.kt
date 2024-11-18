@@ -135,7 +135,7 @@ fun Botsheet() {
                 fruit(onSaveChanges = { navController.navigate("transport_summary_screen") })
             }
             composable("transport_summary_screen") {
-                TransportSummaryCard(onSaveChanges = { navController.navigate("transport_summary_screen") })
+                TransportSummaryCard()
             }
             composable("dairy") {
                 dairy(onSaveChanges = { navController.navigate("transport_summary_screen") }) // Dairy composable in dairy.kt

@@ -131,7 +131,7 @@ fun Profile(navController: NavHostController) {
         ProfileInfoCard("Food Saved")
         Spacer(modifier = Modifier.height(60.dp))
         Button(
-            onClick = {  }, // Navigate to login screen
+            onClick = { navController.navigate("login")  }, // Navigate to login screen
             modifier = Modifier.fillMaxWidth() ,
             colors = ButtonDefaults.buttonColors(containerColor = Color.Red)
         ) {

@@ -6,7 +6,14 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.ShoppingCart
-import androidx.compose.material3.*
+import androidx.compose.material3.BottomAppBar
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -20,7 +27,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.OnboardingScreen
 import com.example.dairy
-import com.example.testing.fruit
+import com.example.wastenot.fruit
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -125,16 +132,19 @@ fun Botsheet() {
 
             // Dynamic destination screens
             composable("itemselect") {
-                fruit()
+                fruit(onSaveChanges = { navController.navigate("transport_summary_screen") })
+            }
+            composable("transport_summary_screen") {
+                TransportSummaryCard(onSaveChanges = { navController.navigate("transport_summary_screen") })
             }
             composable("dairy") {
-                dairy() // Dairy composable in dairy.kt
+                dairy(onSaveChanges = { navController.navigate("transport_summary_screen") }) // Dairy composable in dairy.kt
             }
             composable("bakeryinvent") {
-                bakery() // Bakery composable in bakeryinvent.kt
+                bakery(onSaveChanges = { navController.navigate("transport_summary_screen") }) // Bakery composable in bakeryinvent.kt
             }
             composable("packagedite") {
-                packaged() // Packaged composable in packagedit.kt
+                packaged(onSaveChanges = { navController.navigate("transport_summary_screen") }) // Packaged composable in packagedit.kt
             }
         }
     }

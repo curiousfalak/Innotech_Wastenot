@@ -74,7 +74,7 @@ fun Botsheet() {
             if (currentRoute == "home" || currentRoute == "retailer" ) {
                 BottomAppBar(containerColor = Color(0xFF199712)) {
                     val bottomBarItems = listOf(
-                        Triple(Icons.Default.Home, "Home", "home"),
+                        Triple(Icons.Default.Home , "Home", "home"),
                         Triple(Icons.Default.ShoppingCart, "Retailer", "retailer"),
                         Triple(Icons.Default.Person, "Profile", "profile")
                     )
@@ -91,7 +91,7 @@ fun Botsheet() {
                             Icon(
                                 imageVector = icon,
                                 contentDescription = description,
-                                tint = if (currentRoute == route) Color.White else Color.Gray
+                                tint = if (currentRoute == route) Color.White else Color.Black
                             )
                         }
                     }

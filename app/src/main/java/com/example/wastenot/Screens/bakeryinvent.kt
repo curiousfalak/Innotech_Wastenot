@@ -45,7 +45,7 @@ data class packageditem(
 
 
 @Composable
-fun bakery(){
+fun bakery(onSaveChanges: () -> Unit){
     val items = listOf(
         packagedit("Bread", "Stored at 30°C,60% RH",  R.drawable.img_16,"₹70","Expiry in 7 days"),
         packagedit("Cakes","Stored at 35°C,60%RH", R.drawable.img_17,"₹50","Expiry in 4 days"),
@@ -103,7 +103,7 @@ fun bakery(){
 
         // Save Changes Button
         Button(
-            onClick = { /* Save Action */ },
+            onClick = onSaveChanges,
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(top = 16.dp),

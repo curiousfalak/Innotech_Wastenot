@@ -60,7 +60,7 @@ fun Botsheet() {
                             Icon(
                                 imageVector = Icons.Default.Person,
                                 contentDescription = "Profile",
-                                tint = if (selectedIcon == Icons.Default.Person) Color.White else Color.Gray
+                                tint = if (selectedIcon == Icons.Default.Person) Color.White else Color.Black
                             )
                         }
                     }

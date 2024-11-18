@@ -218,7 +218,7 @@ fun FoodGraph() {
             )
             // Draw the "Food Transported to NGO" segment (Green color)
             drawArc(
-                color = Color(0xFF86CB84),
+                color = Color(0xFF18e7a1),
                 startAngle = -90f + avoidedPercentage,
                 sweepAngle = transportedPercentage,
                 useCenter = true
@@ -234,7 +234,7 @@ fun FoodGraph() {
         ) {
             LegendItem(color = Color.Red, label = "Food Avoided from Wastage: ${avoided} kg")
             Spacer(modifier = Modifier.height(8.dp))
-            LegendItem(color = Color(0xFF86CB84), label = "Food Transported to NGO: ${transported} kg")
+            LegendItem(color = Color(0xFF1c94f3), label = "Food Transported to NGO: ${transported} kg")
         }
 
         Text(

@@ -147,11 +147,11 @@ fun ProfileScreen() {
         ProfileInfoCard("Contact Details")
         Spacer(modifier = Modifier.height(10.dp))
         ProfileInfoCard("Food Saved")
-        Spacer(modifier = Modifier.height(10.dp))
+        Spacer(modifier = Modifier.height(60.dp))
         Button(
             onClick = {  }, // Navigate to login screen
             modifier = Modifier.fillMaxWidth() ,
-            colors = ButtonDefaults.buttonColors(containerColor = Color.Red.copy(alpha = 0.6f))
+            colors = ButtonDefaults.buttonColors(containerColor = Color.Red)
         ) {
             Text("Logout", color = Color.White)
         }

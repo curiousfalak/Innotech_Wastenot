@@ -19,7 +19,8 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.OnboardingScreen
-
+import com.example.dairy
+import com.example.testing.fruit
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -63,7 +64,7 @@ fun Botsheet() {
             val navBackStackEntry = navController.currentBackStackEntryAsState()
             val currentRoute = navBackStackEntry.value?.destination?.route
 
-            if (currentRoute == "home" || currentRoute == "retailer" || currentRoute == "profile") {
+            if (currentRoute == "home" || currentRoute == "retailer" ) {
                 BottomAppBar(containerColor = Color(0xFF199712)) {
                     val bottomBarItems = listOf(
                         Triple(Icons.Default.Home, "Home", "home"),
@@ -110,18 +111,32 @@ fun Botsheet() {
                 Home()
             }
             composable("retailer") {
-                Inventory {
-                    navController.navigate("itemselect")
+                Inventory { category ->
+                    when (category) {
+                        "Fruits" -> navController.navigate("itemselect")
+                        "Dairy Products" -> navController.navigate("dairy")
+                        "Bakery Items" -> navController.navigate("bakeryinvent")
+                        "Packaged Items" -> navController.navigate("packagedite")
+                        else -> navController.navigate("itemselect") // Default
+                    }
                 }
             }
             composable("profile") { Profile(navController) }
 
-            // Add the itemselect composable
+            // Dynamic destination screens
             composable("itemselect") {
-                InventoryScreen() // Replace with your actual ItemSelect screen implementation
+                fruit()
+            }
+            composable("dairy") {
+                dairy() // Dairy composable in dairy.kt
+            }
+            composable("bakeryinvent") {
+                bakery() // Bakery composable in bakeryinvent.kt
+            }
+            composable("packagedite") {
+                packaged() // Packaged composable in packagedit.kt
             }
         }
     }
 }
-
 

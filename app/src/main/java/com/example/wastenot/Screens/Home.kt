@@ -166,9 +166,9 @@ fun MetricItem(value: String, label: String) {
 
 @Composable
 fun FoodGraph() {
-    // Reasonable initial data for food avoided and food transported
-    val foodAvoidedFromWastage = listOf(200, 250, 300, 220, 350, 180, 300) // Amount of food avoided from wastage (in kg)
-    val foodTransportedToNgo = listOf(150, 180, 200, 160, 250, 140, 210) // Amount of food transported to NGOs (in kg)
+    // Sample initial data for food avoided and food transported
+    val foodAvoidedFromWastage = listOf(20, 15, 25, 18, 30, 12, 22) // Amount of food avoided from wastage
+    val foodTransportedToNgo = listOf(35, 40, 50, 45, 60, 38, 55) // Amount of food transported to NGOs
 
     // Combine totals for the pie chart
     val totalAvoided = foodAvoidedFromWastage.sum()
@@ -181,8 +181,8 @@ fun FoodGraph() {
     LaunchedEffect(Unit) {
         while (true) {
             delay(2000)
-            avoided += (5..15).random() // Simulate more food avoided (reasonable growth)
-            transported += (5..10).random() // Simulate more food transported to NGOs (reasonable growth)
+            avoided += (-5..5).random() // Randomly simulate more food avoided from waste
+            transported += (-5..5).random() // Randomly simulate more food transported to NGOs
         }
     }
 

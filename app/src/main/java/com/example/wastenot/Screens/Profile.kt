@@ -147,7 +147,7 @@ fun ProfileScreen() {
         ProfileInfoCard("Contact Details")
         Spacer(modifier = Modifier.height(10.dp))
         ProfileInfoCard("Food Saved")
-        Spacer(modifier = Modifier.height(60.dp))
+        Spacer(modifier = Modifier.height(10.dp))
         Button(
             onClick = {  }, // Navigate to login screen
             modifier = Modifier.fillMaxWidth() ,

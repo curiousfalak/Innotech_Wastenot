@@ -50,7 +50,7 @@ fun bakery(){
         packagedit("Bread", "Stored at 30°C,60% RH",  R.drawable.img_16,"₹70","Expiry in 7 days"),
         packagedit("Cakes","Stored at 35°C,60%RH", R.drawable.img_17,"₹50","Expiry in 4 days"),
         packagedit("Cookies", "Stored at 30°C, 50% RH", R.drawable.img_18,"₹30","Expiry in 30 days"),
-        packagedit("Muffinn", "Stored at 25°C, 60% RH", R.drawable.img_11,"₹40","Expiry in 20 days"),
+        packagedit("Muffinn", "Stored at 25°C, 60% RH", R.drawable.img_10,"₹40","Expiry in 20 days"),
         packagedit("Doughnuts", "Stored at 40°C, 70% RH", R.drawable.img_19,"₹70","Expiry in 30 days"),
         packagedit("Pie", "Stored at 28°C, 50% RH", R.drawable.img_20,"₹40","Expiry in 30 days"),
 

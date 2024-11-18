@@ -25,8 +25,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.example.OnboardingScreen
 import com.example.dairy
+import com.example.wastenot.OnboardingScreen
 import com.example.wastenot.fruit
 
 

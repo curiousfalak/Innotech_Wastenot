@@ -1,20 +1,34 @@
 package com.example.wastenot.Screens
 
 import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
+import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -152,24 +166,30 @@ fun MetricItem(value: String, label: String) {
 
 @Composable
 fun FoodGraph() {
-    val initialFoodWasted = listOf(20, 15, 30, 25, 10, 12, 18) // Initial values for food wasted
-    val initialFoodTransported = listOf(40, 35, 50, 45, 30, 32, 38) // Initial values for food transported
-    val days = listOf("Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun")
+    // Reasonable initial data for food avoided and food transported
+    val foodAvoidedFromWastage = listOf(200, 250, 300, 220, 350, 180, 300) // Amount of food avoided from wastage (in kg)
+    val foodTransportedToNgo = listOf(150, 180, 200, 160, 250, 140, 210) // Amount of food transported to NGOs (in kg)
 
-    val maxValue = (initialFoodWasted + initialFoodTransported).maxOrNull() ?: 1
+    // Combine totals for the pie chart
+    val totalAvoided = foodAvoidedFromWastage.sum()
+    val totalTransported = foodTransportedToNgo.sum()
 
-    // State to hold the animated data
-    var foodWasted by remember { mutableStateOf(initialFoodWasted) }
-    var foodTransported by remember { mutableStateOf(initialFoodTransported) }
+    // Simulate data changes over time (for example, updating every 2 seconds)
+    var avoided by remember { mutableStateOf(totalAvoided) }
+    var transported by remember { mutableStateOf(totalTransported) }
 
-    // Simulate data changes over time
     LaunchedEffect(Unit) {
         while (true) {
             delay(2000)
-            foodWasted = foodWasted.map { it + (-5..5).random() }
-            foodTransported = foodTransported.map { it + (-5..5).random() }
+            avoided += (5..15).random() // Simulate more food avoided (reasonable growth)
+            transported += (5..10).random() // Simulate more food transported to NGOs (reasonable growth)
         }
     }
+
+    // Calculate percentages
+    val total = (avoided + transported).coerceAtLeast(1) // Avoid division by zero
+    val avoidedPercentage = (avoided.toFloat() / total) * 360f
+    val transportedPercentage = (transported.toFloat() / total) * 360f
 
     Column(
         modifier = Modifier
@@ -178,84 +198,47 @@ fun FoodGraph() {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
-            text = "Weekly Food Stats",
+            text = "Food Avoided from Wastage vs Food Transported to NGO",
             style = MaterialTheme.typography.titleMedium,
             modifier = Modifier.padding(bottom = 16.dp)
         )
 
-        LazyRow(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.spacedBy(16.dp)
+        // Pie Chart
+        Canvas(
+            modifier = Modifier
+                .size(250.dp)
+                .padding(16.dp)
         ) {
-            items(days.size) { index ->
-                Column(
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                    modifier = Modifier.padding(horizontal = 8.dp)
-                ) {
-                    // Animate wasted food bar height
-                    val wastedHeight by animateFloatAsState(
-                        targetValue = (foodWasted[index].coerceAtLeast(0).toFloat() / maxValue * 200),
-                        animationSpec = tween(durationMillis = 1000)
-                    )
-
-                    Box(
-                        modifier = Modifier
-                            .height(wastedHeight.dp)
-                            .width(20.dp)
-                            .background(Color.Red)
-                            .clip(RoundedCornerShape(4.dp))
-                    )
-                    Text(
-                        text = "${foodWasted[index].coerceAtLeast(0)} kg",
-                        style = MaterialTheme.typography.bodySmall,
-                        color = Color.Red,
-                        modifier = Modifier.padding(top = 4.dp)
-                    )
-
-                    Spacer(modifier = Modifier.height(8.dp))
-
-                    // Animate transported food bar height
-                    val transportedHeight by animateFloatAsState(
-                        targetValue = (foodTransported[index].coerceAtLeast(0).toFloat() / maxValue * 200),
-                        animationSpec = tween(durationMillis = 1000)
-                    )
-
-                    Box(
-                        modifier = Modifier
-                            .height(transportedHeight.dp)
-                            .width(20.dp)
-                            .background(Color.Green)
-                            .clip(RoundedCornerShape(4.dp))
-                    )
-                    Text(
-                        text = "${foodTransported[index].coerceAtLeast(0)} kg",
-                        style = MaterialTheme.typography.bodySmall,
-                        color = Color.Green,
-                        modifier = Modifier.padding(top = 4.dp)
-                    )
-
-                    Spacer(modifier = Modifier.height(8.dp))
-                    Text(
-                        text = days[index],
-                        style = MaterialTheme.typography.bodyMedium,
-                        color = Color.Black
-                    )
-                }
-            }
+            // Draw the "Food Avoided from Wastage" segment (Red color)
+            drawArc(
+                color = Color.Red,
+                startAngle = -90f,
+                sweepAngle = avoidedPercentage,
+                useCenter = true
+            )
+            // Draw the "Food Transported to NGO" segment (Green color)
+            drawArc(
+                color = Color.Green,
+                startAngle = -90f + avoidedPercentage,
+                sweepAngle = transportedPercentage,
+                useCenter = true
+            )
         }
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceEvenly
+        // Improved Legend
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
+            modifier = Modifier.fillMaxWidth()
         ) {
-            LegendItem(color = Color.Red, label = "Food Wasted (kg)")
-            LegendItem(color = Color.Green, label = "Food Transported (kg)")
+            LegendItem(color = Color.Red, label = "Food Avoided from Wastage: ${avoided} kg")
+            Spacer(modifier = Modifier.height(8.dp))
+            LegendItem(color = Color.Green, label = "Food Transported to NGO: ${transported} kg")
         }
 
         Text(
-            text = "This graph shows the weekly statistics of food wastage and transportation.",
+            text = "This pie chart represents how much food is avoided from wastage and how much is transported to NGOs.",
             style = MaterialTheme.typography.bodySmall,
             color = Color.Gray,
             modifier = Modifier.padding(top = 16.dp)
@@ -267,7 +250,7 @@ fun FoodGraph() {
 fun LegendItem(color: Color, label: String) {
     Row(
         verticalAlignment = Alignment.CenterVertically,
-        modifier = Modifier.padding(8.dp)
+        modifier = Modifier.padding(4.dp)
     ) {
         Box(
             modifier = Modifier
